@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping App - v1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+    h1 { text-align: center; }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .price { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Shopping App - v1</h1>
+  <p>Register Number: 24MIS0200</p>
+  <h2>Available Products</h2>
+  <div class="products" id="products"></div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Laptop", price: 55000 },
+      { id: 2, name: "Headphones", price: 1500 },
+      { id: 3, name: "Keyboard", price: 900 },
+      { id: 4, name: "Mouse", price: 500 }
+    ];
+
+    document.getElementById("products").innerHTML =
+      products.map(product => `
+        <div class="product">
+          <h3>${product.name}</h3>
+          <p class="price">₹${product.price.toLocaleString("en-IN")}</p>
+        </div>
+      `).join("");
+  </script>
+</body>
+</html>
