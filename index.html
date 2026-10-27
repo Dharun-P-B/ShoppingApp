@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping App - v2</title>
+  <title>Shopping App - v3</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -38,7 +38,7 @@
   </style>
 </head>
 <body>
-  <h1>Shopping App - v2</h1>
+  <h1>Shopping App - v3</h1>
   <p>Register Number: 24MIS0200</p>
 
   <h2>Available Products</h2>
@@ -86,16 +86,29 @@
       }
     }
 
-    function showCart() {
-      document.getElementById("count").textContent = cart.length;
-      document.getElementById("cartItems").innerHTML =
-        cart.map(item =>
-          `<li>${item.name} — ${money(item.price)}</li>`
-        ).join("");
+    
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  showCart();
+}
 
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      document.getElementById("total").textContent = money(total);
-    }
+function showCart() {
+  document.getElementById("count").textContent = cart.length;
+
+  document.getElementById("cartItems").innerHTML =
+    cart.map((item, index) => `
+      <li>
+        ${item.name} — ${money(item.price)}
+        <button onclick="removeFromCart(${index})">
+          Remove
+        </button>
+      </li>
+    `).join("");
+
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  document.getElementById("total").textContent = money(total);
+}
+
 
     showProducts();
     showCart();
